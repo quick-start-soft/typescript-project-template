@@ -10,7 +10,11 @@
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "docker-build": "docker build -t typescript-boilerplate .",
     "docker-run": "docker run -p 3000:3000 typescript-boilerplate",
-    "setup-local-machine": "npm install && aicommits hook install"
+    "check-uncommitted-changes": "(git diff --exit-code && git diff --cached --exit-code || { echo \"Error: Uncommitted changes found. Commit all your changes to proceed to the next step.\"; exit 1; } )",
+    "setup-local-machine": "npm install && aicommits hook install",
+    "deploy": "npm run check-uncommitted-changes && git checkout main && git merge develop && git push && git checkout develop",
+    "deploy:from-supporting-branch": "npm run merge-into-develop && npm run deploy",
+    "merge-into-develop": "npm run check-uncommitted-changes && current_branch=$(git symbolic-ref --short HEAD) && git rebase develop && git checkout develop && git merge --squash $current_branch && git commit --no-edit && git reset --soft HEAD~1 && git commit --no-edit && git commit --amend -m \"$(git log -1 --pretty=%B)\n\nMerged the '$current_branch' branch with squash merge.\" && git push"
   },
   "keywords": [],
   "author": "",
