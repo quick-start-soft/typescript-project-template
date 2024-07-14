@@ -9,8 +9,8 @@
     "start": "ts-node src/index.ts",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "docker-build": "docker build -t typescript-boilerplate .",
-    "docker-run": "docker run -p 3000:3000 typescript-boilerplate"
-
+    "docker-run": "docker run -p 3000:3000 typescript-boilerplate",
+    "setup-local-machine": "npm install && aicommits hook install"
   },
   "keywords": [],
   "author": "",
