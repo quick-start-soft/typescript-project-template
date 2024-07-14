@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "ts-node src/index.ts",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "docker-build": "docker build -t typescript-boilerplate .",
+    "docker-run": "docker run -p 3000:3000 typescript-boilerplate"
+
   },
   "keywords": [],
   "author": "",
